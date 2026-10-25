@@ -1,0 +1,33 @@
+# Supply-chain rules: every version is chosen on purpose, from a release old enough to trust,
+# and changes only when deliberately updated.
+
+# Exact versions in package.json, no ^ or ~ ranges.
+saveExact: true
+
+# Refuse versions published less than 3 days ago (minutes). Most hijacked releases
+# are caught and pulled within that window.
+minimumReleaseAge: 4320
+
+# Fail if a package's publish trust level drops versus its earlier releases.
+trustPolicy: no-downgrade
+
+# Only direct dependencies may come from git or tarball URLs.
+blockExoticSubdeps: true
+
+# Dependency install scripts never run unless allow-listed here after review.
+strictDepBuilds: true
+allowBuilds: {}
+
+# Wrong Node version fails instead of warning.
+engineStrict: true
+
+# pdfjs-dist's optional @napi-rs/canvas is a native module for running pdf.js under Node. The
+# page renders in the browser, so it is never installed.
+ignoredOptionalDependencies:
+  - "@napi-rs/canvas"
+
+# Versions forced under other packages, each until those packages take it themselves.
+overrides:
+  # postcss and tailwind pull in 1.2.1, which has GHSA-68fv-2mgg-jv7q (a hostile source map hangs
+  # the build; build time only).
+  source-map-js: 1.2.2

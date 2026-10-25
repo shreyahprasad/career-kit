@@ -1,0 +1,7 @@
+1. Turn 1 says which letter, its pages, word count and which voice it followed (no example letters: plain, about 150 words or fewer after cutting, three paragraphs); what it leads with and why, each with a source from the files or profile.
+2. Every claim in every letter traces to master.md, everything.md or a sourced profile fact; nothing from Still to ask; nothing about the company beyond the posting.
+3. Ties to the company with a concrete posting fact, never mission talk or the posting's phrasing ("drive data-informed impact", "next best action", "unlock", "partner with"). No line telling the reader what to conclude; no stock phrases ("I am excited to apply", "passionate", "great fit").
+4. Says the posting had text it ignored (the PhD note). Never names Looker as hers; since the posting accepts "Looker or a similar BI tool", counting her Tableau is fine and asking about Looker is optional. Never names the Iron Bank or a truck count.
+5. Turn 2 ("too vague") fixes it with a concrete detail from her facts or a cut, adds no new claim; or, if none is left, shows a proposed sentence and asks ONE question about one thing.
+6. Turn 3 (her own sentence) writes the next version straight away with it word for word, changes nothing else, and shows what it replaced. Turn 4 writes nothing.
+7. No repeated words in nearby sentences (a repeat caused by her own word-for-word sentence is fine if the chat offers a fix), no two sentences in a row starting the same way, no em dashes, messages short for a phone.

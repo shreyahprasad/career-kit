@@ -1,0 +1,104 @@
+{
+  "companies": {
+    "Northwind Health": "https://northwind.example",
+    "Lumen Labs": "https://lumen.example"
+  },
+  "people": [
+    {
+      "id": "maya-okafor",
+      "name": "Maya Okafor",
+      "company": "Northwind Health",
+      "role": "Forward Deployed Engineer",
+      "location": "New York",
+      "met_how": "Intro from a bootcamp friend",
+      "met_on": "2026-03-12",
+      "linkedin": "https://www.linkedin.com/in/example-maya",
+      "email": "maya@example.com",
+      "about": "Did the FDE switch two years ago; candid about what the role is day to day.",
+      "tags": ["fde", "mentor", "healthcare"],
+      "interactions": [
+        {
+          "date": "2026-03-12",
+          "kind": "video",
+          "title": "Intro chat",
+          "summary": "Walked through her path from backend to FDE. Says the interviews lean on debugging a customer's broken pipeline live.",
+          "next_step": "send-resume"
+        },
+        {
+          "date": "2026-05-20",
+          "kind": "coffee",
+          "title": "Resume review",
+          "summary": "Went over the resume line by line. Cut the coursework section, lead with the agent work."
+        },
+        {
+          "date": "2026-09-18",
+          "kind": "call",
+          "title": "Mock interview",
+          "summary": "45 minute mock. Strong on the system walkthrough, rushed the customer questions at the start.",
+          "next_step": "catch-up",
+          "transcript": "Maya: Okay, pretend I'm the customer. Our nightly job is failing and nobody knows why.\nMe: Before I touch anything, when did it last succeed, and what changed since then?\nMaya: Good. Keep going."
+        }
+      ]
+    },
+    {
+      "id": "devin-park",
+      "name": "Devin Park",
+      "company": "Lumen Labs",
+      "role": "Engineering Manager",
+      "location": "San Francisco",
+      "met_how": "AI infra meetup",
+      "met_on": "2025-11-06",
+      "linkedin": "https://www.linkedin.com/in/example-devin",
+      "about": "Runs the inference platform team; hires juniors who ship side projects.",
+      "tags": ["ai-infra", "hiring-manager", "sf"],
+      "interactions": [
+        { "date": "2025-11-06", "kind": "event", "title": "Met at the meetup", "summary": "Talked about batching and KV cache costs." },
+        { "date": "2025-12-02", "kind": "message", "title": "LinkedIn follow-up", "summary": "Sent a portfolio link; he replied with two papers to read." },
+        { "date": "2026-02-14", "kind": "video", "title": "Team overview", "summary": "Explained how his team is split. Open to a referral when a role opens." }
+      ]
+    },
+    {
+      "id": "priya-raman",
+      "name": "Priya Raman",
+      "company": "Northwind Health",
+      "role": "Product Manager",
+      "location": "Boston",
+      "met_how": "Maya's teammate",
+      "met_on": "2026-06-03",
+      "about": "PM on the clinical data product Maya deploys.",
+      "tags": ["healthcare", "product"],
+      "interactions": [
+        { "date": "2026-06-03", "kind": "video", "title": "Product walkthrough", "summary": "How customers onboard and where it usually breaks." },
+        { "date": "2026-08-27", "kind": "email", "title": "Shared the onboarding doc", "summary": "Sent notes on the onboarding gaps I noticed." }
+      ]
+    },
+    {
+      "id": "sam-whitaker",
+      "name": "Sam Whitaker",
+      "company": "Independent",
+      "role": "Founder",
+      "location": "Austin",
+      "met_how": "College roommate's cousin",
+      "met_on": "2025-08-20",
+      "about": "Second-time founder; good on pricing and first customers.",
+      "tags": ["founder", "side-project"],
+      "interactions": [
+        { "date": "2025-08-20", "kind": "call", "title": "First call", "summary": "Pricing for a B2B tool; start higher than feels right." },
+        { "date": "2025-10-01", "kind": "message", "title": "Check-in", "summary": "Shared a side project's landing page." }
+      ]
+    },
+    {
+      "id": "alex-chen",
+      "name": "Alex Chen",
+      "company": "Lumen Labs",
+      "role": "Recruiter",
+      "location": "Remote",
+      "met_how": "Devin forwarded my resume",
+      "met_on": "2026-09-29",
+      "tags": ["recruiter", "ai-infra"],
+      "interactions": [
+        { "date": "2026-09-29", "kind": "call", "title": "Recruiter screen", "summary": "Role is on Devin's team. Next step is a take-home.", "next_step": "share-work" }
+      ]
+    }
+  ]
+}

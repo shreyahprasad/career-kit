@@ -1,0 +1,27 @@
+/*
+ * Theme: Soft grey (dark), the starting palette. Yours to change: the customize-colors skill
+ * rewrites this file, and `node scripts/palette.mjs check` must pass before it is kept.
+ * Only colors live here; sizes, type and spacing are in tokens.css.
+ */
+:root {
+  --bg: #1c1f24;
+  --surface: #23272d;
+  --line: #363b43;
+  --fg: #e8eaee;
+  --muted: #a5abb6; /* secondary text */
+  --accent: #8db4f5;
+  --negative: #f07a72; /* errors and refusals; always paired with words */
+
+  /* Series: categorical colors for statuses, todo kinds and talk kinds (each plugin's style.ts).
+     Always drawn as dots beside a label, never as text. */
+  --series-1: #05a388; /* teal */
+  --series-2: #2887e8; /* blue */
+  --series-3: #e26239; /* orange */
+  --series-4: #c74dba; /* magenta */
+  --series-5: #d59d19; /* gold */
+  --series-6: #9d71dd; /* purple */
+  --series-7: #44833e; /* green */
+  --series-neutral: #7c828c; /* context that is not a series */
+
+  color-scheme: dark;
+}

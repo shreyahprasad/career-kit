@@ -1,0 +1,37 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Env / secrets
+.env
+
+# Logs
+*.log
+
+# macOS
+.DS_Store
+
+# Claude Code worktrees and TypeScript build info
+.claude/worktrees/
+*.tsbuildinfo
+
+# Your data is private: it lives in data/ and never leaves this machine. The patterns below
+# guard against a stray copy anywhere else. (tools/*/example.json are made up and tracked.)
+data/
+seed.json
+*.xlsx
+*.xls
+*.db
+*.db.tmp
+*.sqlite
+*.sqlite3
+
+# Claude Code keeps approved commands here, which can include secrets typed into them. Never commit it.
+.claude/settings.local.json
+
+
+# Skill harness results (real runs, made-up data, large)
+tests/skills/results/

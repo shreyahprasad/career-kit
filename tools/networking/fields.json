@@ -1,0 +1,48 @@
+{
+  "Conversation": [
+    "date",
+    "kind",
+    "next_step",
+    "notes",
+    "person",
+    "person_id",
+    "summary",
+    "title"
+  ],
+  "NewPerson": [
+    "about",
+    "company",
+    "email",
+    "linkedin",
+    "location",
+    "met_how",
+    "met_on",
+    "name",
+    "phone",
+    "role",
+    "tags"
+  ],
+  "PersonEdit": [
+    "about",
+    "company",
+    "email",
+    "linkedin",
+    "location",
+    "met_how",
+    "met_on",
+    "name",
+    "phone",
+    "role",
+    "tags",
+    "version"
+  ],
+  "TalkEdit": [
+    "date",
+    "kind",
+    "next_step",
+    "notes",
+    "summary",
+    "title",
+    "version"
+  ]
+}

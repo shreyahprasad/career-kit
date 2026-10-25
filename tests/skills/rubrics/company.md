@@ -1,0 +1,3 @@
+1. Turn 1 (a second role at the same company, Dragonstone Freight, whose other role already has a draft) gives it the same resume word for word, says which role's draft it is, does no tailoring, and offers anything the Data Engineer posting asks for that the shared resume lacks only as an option that would change the resume for both roles.
+2. Turn 2 (Pyke Shipping, Analytics Engineer, a different company in the same role family as the Senior Analytics Engineer role) starts from the Dragonstone draft rather than master.md, says so, and changes only what the Pyke posting clearly needs; or asks whether the roles are the same kind. Titles, dates and numbers match master.md exactly.
+3. No em dashes, short messages, nothing invented.

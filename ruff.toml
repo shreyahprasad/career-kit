@@ -1,0 +1,10 @@
+# One ruff setup for every Python folder. CI runs the same version (`required-version`).
+required-version = "==0.17.1"
+line-length = 120
+target-version = "py314"
+# Each folder is its own project; its modules are first-party for import sorting.
+src = ["api", "tools/career", "tools/networking", "tools/writekit", "tests/e2e"]
+extend-exclude = ["tools/career/typst-packages"]
+
+[lint]
+select = ["E", "F", "I", "B", "UP"]

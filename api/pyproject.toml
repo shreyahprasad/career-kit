@@ -1,0 +1,25 @@
+[project]
+name = "career-kit-api"
+version = "0.1.0"
+description = "The read API: serves career-kit's data and its built page. Reads files, never writes, never runs commands."
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "fastapi==0.141.1",
+    "uvicorn==0.54.0",
+    "writekit",
+]
+
+[tool.uv]
+package = false
+# Same rule as web/: ignore releases younger than 3 days.
+exclude-newer = "3 days"
+
+[dependency-groups]
+dev = [
+    "httpx2==2.13.1",
+    "pytest==9.1.1",
+]
+
+[tool.uv.sources]
+# writekit.identity (the same tailnet check as the writers) and writekit.forms (the same id and PDF name rules).
+writekit = { path = "../tools/writekit", editable = true }

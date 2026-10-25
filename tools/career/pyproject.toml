@@ -1,0 +1,28 @@
+[project]
+name = "career-kit-career"
+version = "0.1.0"
+description = "The write side of career: the roles you are looking at and what happened with each. The only programs that write career.db."
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "fastapi==0.141.1",
+    # Lays out a draft as its PDF, in-process (render.py).
+    "typst==0.15.0",
+    "uvicorn==0.54.0",
+    "writekit",
+]
+
+[tool.uv]
+package = false
+# Same rule as api/ and web/: ignore releases younger than 3 days.
+exclude-newer = "3 days"
+
+[dependency-groups]
+dev = [
+    "httpx2==2.13.1",
+    "pypdf==6.20.1",  # reads the text back out of a PDF, in test_render.py
+    "pytest==9.1.1",
+]
+
+[tool.uv.sources]
+# What every writer shares: docs/writers.md.
+writekit = { path = "../writekit", editable = true }

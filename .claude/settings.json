@@ -1,0 +1,45 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-settings.json",
+  "permissions": {
+    "allow": [
+      "Bash(curl *)",
+      "Bash(grep _PORT .env)",
+      "Bash(./start.sh)",
+      "Bash(./stop.sh)",
+      "Bash(./setup.sh)",
+      "Edit(data/**)"
+    ],
+    "ask": [
+      "Read(./.env)",
+      "Edit(./.env)"
+    ],
+    "deny": [
+      "Bash(wget *)",
+      "Bash(nc *)",
+      "Bash(ncat *)",
+      "Bash(telnet *)",
+      "Bash(ssh *)",
+      "Bash(scp *)",
+      "Bash(sftp *)",
+      "Bash(rsync *)",
+      "Bash(sqlite3 *)",
+      "Bash(git push *)"
+    ]
+  },
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Bash",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/bin/bash",
+            "args": [
+              "${CLAUDE_PROJECT_DIR}/.claude/hooks/local_only.sh"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}

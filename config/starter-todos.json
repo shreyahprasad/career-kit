@@ -1,0 +1,5 @@
+[
+  { "text": "Update resume", "kind": "resume", "due_in_days": 1 },
+  { "text": "Apply to role", "kind": "apply", "due_in_days": 1 },
+  { "text": "Message recruiter", "kind": "outreach", "due_in_days": 1 }
+]

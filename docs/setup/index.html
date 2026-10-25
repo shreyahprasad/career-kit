@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>career-kit Setup</title>
+<meta name="description" content="Set up career-kit on your Mac, step by step, then message your job search from your phone.">
+<script>
+  (function () {
+    var root = document.documentElement;
+    if (root.hasAttribute("data-theme")) return;
+    var saved = null;
+    try { saved = localStorage.getItem("career-kit:theme"); } catch (e) {}
+    root.setAttribute("data-theme", saved === "light" ? "light" : "dark");
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght,SOFT@9..144,600..800,100&family=Instrument+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+  /* Blueprint: navy and cornflower. Dark uses the board's own grey and blue (web/src/styles/theme.css). */
+  :root {
+    --paper: #e5eaf2;
+    --card: #f3f6fb;
+    --ink: #101c33;
+    --muted: #4b5a75;
+    --line: #d0d9e7;
+    --s1: #bcd0f3;
+    --s2: #7ea3e9;
+    --s3: #2f62c4;
+    --s4: #13274f;
+    --fill: #d5e2f8;
+    --strong: #2553ad;
+    --fill-ink: #0d1a33;
+    --pill-bg: #dbe3f0;
+    --btn-bg: #2553ad;
+    --btn-ink: #f3f7ff;
+    --display: "Fraunces", "Cooper Black", Georgia, serif;
+    --body: "Instrument Sans", ui-sans-serif, -apple-system, "Segoe UI", sans-serif;
+    --mono: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+    --stripe: 11px;
+  }
+  :root[data-theme="dark"] {
+    --paper: #1c1f24;
+    --card: #23272d;
+    --ink: #e8eaee;
+    --muted: #a5abb6;
+    --line: #363b43;
+    --s1: #1f3358;
+    --s2: #33589c;
+    --s3: #8db4f5;
+    --s4: #d6e4fb;
+    --fill: #26385a;
+    --strong: #8db4f5;
+    --fill-ink: #eef3fd;
+    --pill-bg: #2b3038;
+    --btn-bg: #8db4f5;
+    --btn-ink: #11192b;
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--paper);
+    color: var(--ink);
+    font: 400 1rem/1.6 var(--body);
+    overflow-x: hidden;
+  }
+  a { color: var(--strong); text-underline-offset: 3px; }
+  button, input { font: inherit; color: inherit; }
+
+  /* Four concentric bands, as on Tapout */
+  .stripes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 560px;
+    pointer-events: none;
+    -webkit-mask-image: linear-gradient(to bottom, #000 62%, transparent);
+    mask-image: linear-gradient(to bottom, #000 62%, transparent);
+  }
+  .stripes span {
+    position: absolute;
+    left: -2px;
+    border-style: solid;
+    border-width: var(--stripe) var(--stripe) 0 0;
+    border-top-right-radius: 120px;
+  }
+  .stripes span:nth-child(1) { top: 28px; right: 28px; bottom: 0; border-color: var(--s4); }
+  .stripes span:nth-child(2) { top: calc(28px + var(--stripe) * 1.6); right: calc(28px + var(--stripe) * 1.6); bottom: 0; border-color: var(--s3); border-top-right-radius: calc(120px - var(--stripe) * 1.6); }
+  .stripes span:nth-child(3) { top: calc(28px + var(--stripe) * 3.2); right: calc(28px + var(--stripe) * 3.2); bottom: 0; border-color: var(--s2); border-top-right-radius: calc(120px - var(--stripe) * 3.2); }
+  .stripes span:nth-child(4) { top: calc(28px + var(--stripe) * 4.8); right: calc(28px + var(--stripe) * 4.8); bottom: 0; border-color: var(--s1); border-top-right-radius: calc(120px - var(--stripe) * 4.8); }
+
+  main {
+    position: relative;
+    max-width: 660px;
+    margin: 0 auto;
+    padding-left: max(16px, env(safe-area-inset-left, 0px));
+    padding-right: max(16px, env(safe-area-inset-right, 0px));
+    padding-block: 132px 96px;
+  }
+
+  .hero { display: grid; grid-template-columns: 1fr auto; gap: 24px; align-items: end; margin-bottom: 40px; }
+  .eyebrow {
+    font: 500 0.75rem/1 var(--mono);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 14px;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-variation-settings: "opsz" 144, "SOFT" 100;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    margin: 0 0 18px;
+    text-wrap: balance;
+  }
+  .lede { color: var(--muted); font-size: 1.08rem; max-width: 36ch; margin: 0; }
+
+  /* Mark: a disc with three rising bars, ringed */
+  .mark { width: 132px; height: 132px; flex: none; }
+  .mark circle { fill: none; }
+  .mark .ring { stroke-width: 5; transform-origin: 66px 66px; }
+  .mark .r1 { stroke: var(--s3); }
+  .mark .r2 { stroke: var(--s2); }
+  .mark .r3 { stroke: var(--s1); }
+  .mark .disc { fill: var(--ink); }
+  .mark rect { fill: var(--paper); }
+  .mark.pulse .ring { animation: ring 1.1s ease-out both; }
+  .mark.pulse .r2 { animation-delay: 0.12s; }
+  .mark.pulse .r3 { animation-delay: 0.24s; }
+  @keyframes ring { 0% { opacity: 0.2; transform: scale(0.82); } 60% { opacity: 1; transform: scale(1.06); } 100% { opacity: 1; transform: scale(1); } }
+
+  .eyebrow-row { display: flex; align-items: center; gap: 12px; margin: 0 0 14px; }
+  .eyebrow-row .eyebrow { margin: 0; }
+  .theme-toggle {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 10px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    font: 500 0.72rem/1 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .theme-toggle:hover { color: var(--ink); border-color: var(--muted); }
+  .theme-toggle svg { width: 14px; height: 14px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; }
+
+  .question { margin-bottom: 28px; }
+  .q-label {
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    font: 600 1.05rem/1.3 var(--body);
+    margin: 0 0 12px;
+  }
+  .choices { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .choice {
+    position: relative;
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px;
+    align-items: center;
+    text-align: left;
+    padding: 16px;
+    border-radius: 18px;
+    border: 2px solid var(--line);
+    background: var(--card);
+    cursor: pointer;
+    transition: transform 0.12s ease, border-color 0.12s ease, background 0.12s ease;
+  }
+  .choice:hover { border-color: var(--muted); }
+  .choice:active { transform: scale(0.98); }
+  .choice svg { width: 36px; height: 36px; stroke: currentColor; fill: none; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+  .choice strong { display: block; font-weight: 600; }
+  .choice small { display: block; color: var(--muted); font-size: 0.86rem; line-height: 1.35; }
+  .choice[aria-pressed="true"] { border-color: var(--ink); background: var(--fill); color: var(--fill-ink); }
+  .choice[aria-pressed="true"] small { color: inherit; opacity: 0.78; }
+  .choice .check {
+    position: absolute;
+    top: -9px;
+    right: -9px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: var(--paper);
+    display: none;
+    place-items: center;
+  }
+  .choice .check svg { width: 14px; height: 14px; stroke-width: 3; }
+  .choice[aria-pressed="true"] .check { display: grid; }
+  .choice:focus-visible, .step-head:focus-visible, .done-btn:focus-visible, .btn:focus-visible,
+  .copy:focus-visible, .theme-toggle:focus-visible, .field input:focus-visible { outline: 3px solid var(--strong); outline-offset: 3px; }
+
+  .progress { display: flex; align-items: center; gap: 14px; margin: 44px 0 18px; }
+  .segments { flex: 1; display: grid; grid-auto-flow: column; gap: 6px; }
+  .segments i { height: 8px; border-radius: 4px; background: var(--line); transition: background 0.2s; }
+  .segments i.on { background: var(--s3); }
+  .progress-text { font: 500 0.8rem var(--mono); color: var(--muted); white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+  .steps { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+  .step { border-radius: 20px; border: 1px solid var(--line); background: var(--card); }
+  .step.open { border-color: var(--ink); }
+  .step-head {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    gap: 12px;
+    align-items: center;
+    text-align: left;
+    padding: 16px 18px;
+    border: 0;
+    background: none;
+    cursor: pointer;
+    border-radius: 20px;
+  }
+  .num {
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    font: 500 0.85rem var(--mono);
+    border: 1.5px solid var(--line);
+  }
+  .step.open .num { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .step.done .num { background: var(--s3); border-color: var(--s3); color: var(--paper); }
+  .step.done .num svg { width: 16px; height: 16px; stroke: currentColor; stroke-width: 3; fill: none; }
+  .step-title { font: 600 1.05rem/1.3 var(--body); }
+  .step.done .step-title { color: var(--muted); }
+  .step-body { padding: 0 22px 22px 64px; min-width: 0; }
+  .step-body p { margin: 0 0 12px; }
+  .step-body ol { margin: 0 0 12px; padding-left: 20px; }
+  .step-body li { margin-bottom: 6px; }
+  .step-body li::marker { color: var(--muted); }
+  .step-body h3 { font: 600 0.95rem/1.3 var(--body); margin: 16px 0 6px; }
+  .note { color: var(--muted); font-size: 0.92rem; }
+
+  .cmd {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: start;
+    gap: 8px;
+    margin: 0 0 12px;
+    padding: 10px 10px 10px 14px;
+    border-radius: 12px;
+    background: var(--pill-bg);
+  }
+  .cmd code { font: 400 0.84rem/1.55 var(--mono); white-space: pre-wrap; overflow-wrap: break-word; min-width: 0; padding-top: 3px; }
+  .copy {
+    font: 500 0.72rem/1 var(--mono);
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 7px 10px;
+    border-radius: 999px;
+    border: 1.5px solid var(--line);
+    background: var(--card);
+    color: var(--muted);
+    cursor: pointer;
+  }
+  .copy:hover { color: var(--ink); border-color: var(--muted); }
+  kbd { font: 500 0.82rem var(--mono); padding: 1px 6px; border-radius: 6px; border: 1px solid var(--line); background: var(--card); }
+
+  .field { display: grid; gap: 6px; margin: 0 0 14px; }
+  .field label { font-weight: 600; }
+  .field input {
+    width: 100%;
+    padding: 10px 14px;
+    border-radius: 12px;
+    border: 1.5px solid var(--line);
+    background: var(--paper);
+    font-family: var(--mono);
+    font-size: 0.9rem;
+  }
+
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; margin-top: 6px; }
+  .btn, .done-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 11px 16px;
+    border-radius: 999px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  .btn { background: var(--btn-bg); color: var(--btn-ink); border: 2px solid var(--btn-bg); }
+  .done-btn { background: transparent; border: 2px solid var(--ink); }
+
+  .finish { text-align: center; padding: 36px 0 0; }
+  .finish h2 { font: 700 2rem/1.1 var(--display); font-variation-settings: "opsz" 144, "SOFT" 100; margin: 0 0 8px; }
+  .finish p { color: var(--muted); margin: 0 auto; max-width: 44ch; }
+
+  footer { color: var(--muted); font-size: 0.85rem; margin-top: 64px; padding-top: 18px; border-top: 1px solid var(--line); }
+  [hidden] { display: none !important; }
+
+  @media (max-width: 560px) {
+    :root { --stripe: 7px; }
+    .stripes { height: 250px; }
+    main { padding-block: 108px 72px; }
+    .hero { grid-template-columns: 1fr; }
+    .mark { display: none; }
+    h1 { padding-right: 40px; }
+    .choices { grid-template-columns: 1fr; }
+    .step-body { padding: 0 18px 20px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+<div class="stripes" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+<main>
+  <header class="hero">
+    <div>
+      <div class="eyebrow-row">
+        <p class="eyebrow">career-kit setup</p>
+        <button class="theme-toggle" id="theme-toggle" type="button"></button>
+      </div>
+      <h1>Your job search, from your phone.</h1>
+      <p class="lede">Set it up once on a Mac that stays on. After that, you just message it. Pick how you want to use it.</p>
+    </div>
+    <svg class="mark" id="mark" viewBox="0 0 132 132" aria-hidden="true">
+      <circle class="ring r3" cx="66" cy="66" r="62"/>
+      <circle class="ring r2" cx="66" cy="66" r="51"/>
+      <circle class="ring r1" cx="66" cy="66" r="40"/>
+      <circle class="disc" cx="66" cy="66" r="29"/>
+      <rect x="48" y="70" width="9" height="12" rx="2"/>
+      <rect x="61.5" y="62" width="9" height="20" rx="2"/>
+      <rect x="75" y="52" width="9" height="30" rx="2"/>
+    </svg>
+  </header>
+
+  <section class="question">
+    <h2 class="q-label">On your phone</h2>
+    <div class="choices" data-q="use">
+      <button class="choice" id="q-board" data-v="board" aria-pressed="false">
+        <svg viewBox="0 0 36 36"><rect x="10" y="3" width="16" height="30" rx="4"/><path d="M14 13h8M14 18h8M14 23h5"/></svg>
+        <span><strong>Chat and the board</strong><small>Message Claude, and see your roles and drafts on a page. Adds Tailscale.</small></span>
+        <span class="check"><svg viewBox="0 0 14 14"><path d="M3 7.5l2.5 2.5L11 4"/></svg></span>
+      </button>
+      <button class="choice" id="q-chat" data-v="chat" aria-pressed="false">
+        <svg viewBox="0 0 36 36"><path d="M7 9h22v14H16l-6 5v-5H7z"/></svg>
+        <span><strong>Just chat</strong><small>Message Claude from the Claude app. Fewer steps; add the board any time.</small></span>
+        <span class="check"><svg viewBox="0 0 14 14"><path d="M3 7.5l2.5 2.5L11 4"/></svg></span>
+      </button>
+    </div>
+  </section>
+
+  <section id="plan" hidden>
+    <div class="progress">
+      <div class="segments" id="segments"></div>
+      <div class="progress-text" id="progress-text"></div>
+    </div>
+    <ol class="steps" id="steps"></ol>
+    <div class="finish" id="finish" hidden>
+      <h2>Done. Go message it.</h2>
+      <p>Next, say "interview me for my resume" so drafts start from your real experience. The <a href="https://github.com/shreyahprasad/career-kit#readme">README</a> covers the rest.</p>
+    </div>
+  </section>
+
+  <footer>
+    Not affiliated with Anthropic, GitHub, Homebrew or Tailscale.
+    Source: <a href="https://github.com/shreyahprasad/career-kit">github.com/shreyahprasad/career-kit</a>
+  </footer>
+</main>
+
+<script>
+  const REPO = "shreyahprasad/career-kit";
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+  const cmd = (text) =>
+    `<div class="cmd"><code>${esc(text)}</code><button class="copy" type="button" data-copy="${esc(text)}">Copy</button></div>`;
+  const terminal = `Open <strong>Terminal</strong>: press <kbd>⌘</kbd> <kbd>Space</kbd>, type Terminal, press <kbd>Return</kbd>.`;
+
+  const STEPS = {
+    plan: () => ({
+      title: "Get a Claude plan",
+      body: `
+        <p>Pro is enough. The free plan does not include Claude Code, and an API key does not work with the phone connection.</p>
+        <p class="note">On a Team or Enterprise plan, an Owner has to turn on Remote Control first.</p>`,
+      link: ["https://claude.com/pricing", "See Claude plans"]
+    }),
+    brew: () => ({
+      title: "Install Homebrew",
+      body: `
+        <p>Homebrew installs the tools career-kit needs. ${terminal} Paste this and press <kbd>Return</kbd>:</p>
+        ${cmd('/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"')}
+        <ol>
+          <li>It asks for your Mac password. Type it and press <kbd>Return</kbd>; nothing shows while you type.</li>
+          <li>When it finishes, it prints lines under <strong>Next steps</strong>. Paste and run those too.</li>
+          <li>Close Terminal and open it again.</li>
+        </ol>
+        <p class="note">Already have it? <code>brew --version</code> prints a version. Skip ahead.</p>`,
+      link: ["https://brew.sh", "Open brew.sh"]
+    }),
+    claude: () => ({
+      title: "Install Claude Code",
+      body: `
+        <p>In Terminal:</p>
+        ${cmd("curl -fsSL https://claude.ai/install.sh | bash")}
+        <p>It shows nothing while it downloads. When it is done, open a new Terminal window and sign in:</p>
+        ${cmd("claude")}
+        <p>Follow the browser prompts with the account that has your plan. Once you see the prompt box, type <code>/exit</code> to close it.</p>`,
+      link: ["https://code.claude.com/docs/en/setup", "Install guide"]
+    }),
+    copy: (s) => ({
+      title: "Make your own copy",
+      body: `
+        <ol>
+          <li>Make a free <a href="https://github.com/signup" target="_blank" rel="noopener">GitHub account</a> if you do not have one.</li>
+          <li>On the <a href="https://github.com/${REPO}" target="_blank" rel="noopener">career-kit page</a>, click <strong>Use this template</strong>, then <strong>Create a new repository</strong>. Name it <code>career-kit</code> and pick <strong>Private</strong>.</li>
+        </ol>
+        <div class="field">
+          <label for="gh-user">Your GitHub username</label>
+          <input id="gh-user" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="your-username" value="${esc(s.user)}">
+        </div>
+        <p>Then in Terminal, sign in to GitHub and copy it to your Mac. For <code>gh auth login</code>, pick <strong>GitHub.com</strong>, <strong>HTTPS</strong>, and <strong>Login with a web browser</strong>.</p>
+        ${cmd("brew install gh")}
+        ${cmd("gh auth login")}
+        ${cmd(`gh repo clone ${s.user || "your-username"}/career-kit ~/career-kit`)}`
+    }),
+    setup: () => ({
+      title: "Set it up",
+      body: `
+        <p>This installs what the code needs and makes your empty databases. The first time takes a few minutes.</p>
+        ${cmd("cd ~/career-kit")}
+        ${cmd("brew install uv fnm pnpm")}
+        ${cmd("./setup.sh")}
+        <p>It ends with <strong>Set up. Start it with ./start.sh</strong>. It is safe to run again.</p>`
+    }),
+    start: () => ({
+      title: "Start it",
+      body: `
+        ${cmd("./start.sh")}
+        <p>Open <a href="http://127.0.0.1:5180" target="_blank" rel="noopener">127.0.0.1:5180</a> on the Mac. You should see an empty board.</p>
+        <p class="note">To have it start by itself whenever you log in to the Mac, run this once:</p>
+        ${cmd("scripts/launchagent.sh install")}`
+    }),
+    awake: () => ({
+      title: "Keep the Mac awake",
+      body: `
+        <p>Your phone can only reach the Mac while it is awake. The screen can still turn off.</p>
+        <h3>Desktop Mac</h3>
+        <p><strong>System Settings &gt; Energy</strong>, turn on <strong>Prevent automatic sleeping when the display is off</strong>.</p>
+        <h3>Laptop, plugged in</h3>
+        <p><strong>System Settings &gt; Battery &gt; Options</strong>, turn on <strong>Prevent automatic sleeping on power adapter when the display is off</strong>.</p>`
+    }),
+    phone: () => ({
+      title: "Connect your phone",
+      body: `
+        <ol>
+          <li>Install the Claude app on your phone (<a href="https://apps.apple.com/us/app/claude-by-anthropic/id6473753684" target="_blank" rel="noopener">iPhone</a>, <a href="https://play.google.com/store/apps/details?id=com.anthropic.claude" target="_blank" rel="noopener">Android</a>) and sign in with the same account.</li>
+          <li>In Terminal, in the career-kit folder:</li>
+        </ol>
+        ${cmd('cd ~/career-kit && claude --remote-control "Job search"')}
+        <ol start="3">
+          <li>It asks you to trust the folder and to turn on Remote Control. Say yes to both.</li>
+          <li>In the Claude app, tap <strong>Code</strong> and open <strong>Job search</strong>.</li>
+        </ol>
+        <p class="note">Leave that Terminal window open: the session lives on the Mac. After the Mac restarts, run the same line again.</p>`
+    }),
+    board: () => ({
+      title: "Put the board on your phone",
+      body: `
+        <ol>
+          <li>Install <a href="https://tailscale.com/download" target="_blank" rel="noopener">Tailscale</a> on the Mac and on your phone, signed in to the same account.</li>
+          <li>On the Mac, in the Tailscale app: <strong>Settings</strong>, find <strong>CLI integration</strong>, click <strong>Show me how</strong>, then <strong>Install Now</strong>.</li>
+          <li>Get the Mac's Tailscale name, like <code>your-mac.your-tailnet.ts.net</code>:</li>
+        </ol>
+        ${cmd("tailscale status --json | grep -m1 DNSName")}
+        <ol start="4">
+          <li>Open your settings file:</li>
+        </ol>
+        ${cmd("open -e ~/career-kit/.env")}
+        <p>Set <code>TAILNET_LOGINS</code> to your Tailscale login email and <code>TAILNET_HOSTS</code> to that name (without the dot at the end), then save.</p>
+        <ol start="5">
+          <li>Share the page on your tailnet. If it says HTTPS is not on, open the link it prints, turn it on, and run these again.</li>
+        </ol>
+        ${cmd("tailscale serve --bg --set-path /api/career/write http://127.0.0.1:8140/api/career/write")}
+        ${cmd("tailscale serve --bg --set-path /api/networking/write http://127.0.0.1:8120/api/networking/write")}
+        ${cmd("tailscale serve --bg http://127.0.0.1:8100")}
+        <ol start="6">
+          <li>Restart it, then open <code>https://</code> plus that name on your phone.</li>
+        </ol>
+        ${cmd("cd ~/career-kit && ./stop.sh && ./start.sh")}
+        <p class="note">Only the logins in <code>TAILNET_LOGINS</code> can open it.</p>`
+    }),
+    try: () => ({
+      title: "Try it",
+      body: `
+        <p>From the Claude app on your phone, in <strong>Job search</strong>, send:</p>
+        ${cmd("What should I do today?")}
+        <p>Then add a real role by pasting its link: <em>Add this job: https://...</em> It shows you the role before saving it.</p>`
+    })
+  };
+
+  const ORDER = {
+    board: ["plan", "brew", "claude", "copy", "setup", "start", "awake", "phone", "board", "try"],
+    chat: ["plan", "brew", "claude", "copy", "setup", "start", "awake", "phone", "try"]
+  };
+  const CHECK = '<svg viewBox="0 0 16 16"><path d="M3.5 8.5l3 3 6-7"/></svg>';
+
+  const store = {
+    get(k) { try { return JSON.parse(localStorage.getItem(k)); } catch (e) { return null; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch (e) {} }
+  };
+  const state = { use: null, open: null, user: store.get("career-kit:user") || "" };
+
+  function readHash() {
+    const use = location.hash.slice(1);
+    if (ORDER[use]) state.use = use;
+  }
+
+  function pulse() {
+    const mark = document.getElementById("mark");
+    mark.classList.remove("pulse");
+    void mark.getBoundingClientRect();
+    mark.classList.add("pulse");
+  }
+
+  function render() {
+    document.querySelectorAll(".choices").forEach((group) => {
+      group.querySelectorAll(".choice").forEach((btn) => {
+        btn.setAttribute("aria-pressed", String(state[group.dataset.q] === btn.dataset.v));
+      });
+    });
+
+    const plan = document.getElementById("plan");
+    if (!state.use) { plan.hidden = true; return; }
+    plan.hidden = false;
+    history.replaceState(null, "", `#${state.use}`);
+
+    // Shared steps are ticked once for both paths.
+    const done = store.get("career-kit:done") || {};
+    const ids = ORDER[state.use];
+    if (!ids.includes(state.open)) state.open = ids.find((id) => !done[id]) || null;
+
+    document.getElementById("steps").innerHTML = ids.map((id, i) => {
+      const step = STEPS[id](state);
+      const isOpen = state.open === id;
+      const cls = [done[id] ? "done" : "", isOpen ? "open" : ""].join(" ");
+      return `
+        <li class="step ${cls}">
+          <button class="step-head" id="h-${id}" data-id="${id}" aria-expanded="${isOpen}">
+            <span class="num">${done[id] ? CHECK : i + 1}</span>
+            <span class="step-title">${step.title}</span>
+          </button>
+          ${isOpen ? `<div class="step-body">${step.body}
+            <div class="actions">
+              ${step.link ? `<a class="btn" href="${step.link[0]}" target="_blank" rel="noopener">${step.link[1]}</a>` : ""}
+              <button class="done-btn" id="d-${id}" data-done="${id}">${done[id] ? "Mark not done" : i === ids.length - 1 ? "Done" : "Done, next step"}</button>
+            </div>
+          </div>` : ""}
+        </li>`;
+    }).join("");
+
+    const count = ids.filter((id) => done[id]).length;
+    document.getElementById("segments").innerHTML = ids.map((id) => `<i class="${done[id] ? "on" : ""}"></i>`).join("");
+    document.getElementById("progress-text").textContent = `${count}/${ids.length}`;
+    document.getElementById("finish").hidden = count !== ids.length;
+
+    document.querySelectorAll(".step-head").forEach((head) => {
+      head.addEventListener("click", () => {
+        state.open = state.open === head.dataset.id ? "" : head.dataset.id;
+        render();
+      });
+    });
+    document.querySelectorAll("[data-done]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.done;
+        done[id] = !done[id];
+        store.set("career-kit:done", done);
+        state.open = done[id] ? (ids.find((x) => !done[x]) || null) : id;
+        if (ids.every((x) => done[x])) pulse();
+        render();
+      });
+    });
+    const user = document.getElementById("gh-user");
+    if (user) {
+      user.addEventListener("change", () => {
+        state.user = user.value.trim();
+        store.set("career-kit:user", state.user);
+        render();
+        document.getElementById("gh-user").focus();
+      });
+    }
+  }
+
+  document.addEventListener("click", (e) => {
+    const btn = e.target.closest(".copy");
+    if (!btn) return;
+    const done = () => { btn.textContent = "Copied"; setTimeout(() => { btn.textContent = "Copy"; }, 1500); };
+    const select = () => {
+      const range = document.createRange();
+      range.selectNodeContents(btn.previousElementSibling);
+      const sel = getSelection();
+      sel.removeAllRanges();
+      sel.addRange(range);
+    };
+    try { navigator.clipboard.writeText(btn.dataset.copy).then(done, select); } catch (err) { select(); }
+  });
+
+  document.querySelectorAll(".choices").forEach((group) => {
+    group.addEventListener("click", (e) => {
+      const btn = e.target.closest(".choice");
+      if (!btn) return;
+      state[group.dataset.q] = btn.dataset.v;
+      state.open = null;
+      pulse();
+      render();
+    });
+  });
+
+  const SUN = '<svg viewBox="0 0 16 16"><circle cx="8" cy="8" r="3"/><path d="M8 1.5v1.5M8 13v1.5M1.5 8H3M13 8h1.5M3.4 3.4l1 1M11.6 11.6l1 1M3.4 12.6l1-1M11.6 4.4l1-1"/></svg>';
+  const MOON = '<svg viewBox="0 0 16 16"><path d="M13 9.5A5.5 5.5 0 0 1 6.5 3a5.5 5.5 0 1 0 6.5 6.5z"/></svg>';
+  const toggle = document.getElementById("theme-toggle");
+  function paintToggle() {
+    const dark = document.documentElement.getAttribute("data-theme") === "dark";
+    toggle.innerHTML = dark ? `${SUN}Light` : `${MOON}Dark`;
+    toggle.setAttribute("aria-label", dark ? "Switch to light mode" : "Switch to dark mode");
+  }
+  toggle.addEventListener("click", () => {
+    const next = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    try { localStorage.setItem("career-kit:theme", next); } catch (e) {}
+    paintToggle();
+  });
+  paintToggle();
+
+  readHash();
+  render();
+  pulse();
+</script>
+</body>
+</html>

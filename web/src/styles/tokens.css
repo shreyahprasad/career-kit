@@ -1,0 +1,64 @@
+/*
+ * Design tokens: every size, type and spacing value the pages use. Change values here only.
+ * The colors are in theme.css, which each copy of career-kit makes its own.
+ */
+@import "./theme.css";
+
+:root {
+  /* Type */
+  --font-ui: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-data: "IBM Plex Mono", ui-monospace, "SF Mono", Menlo, monospace;
+
+  /* Type scale: every text size in the app is one of these (as text-label, text-meta, ...) */
+  --type-label: 11.5px; /* uppercase labels, nav captions */
+  --type-meta: 12px; /* mono metadata: dates, counts, tags, transcripts */
+  --type-small: 13px; /* secondary lines and form controls */
+  --type-copy: 14px; /* summaries and notes inside a card */
+  --type-body: 15px; /* running text */
+  --type-title: 17px; /* the subject of a card, e.g. a person's name */
+  --type-heading: 21px; /* page and section headings, headline figures */
+  --type-control: var(--type-small); /* selects and inputs; 16px on a phone, below */
+
+  /* Spacing */
+  --page-margin: 28px;
+  --gap-block: 24px;
+  --gap-panel: 20px;
+  --panel-pad: 22px;
+  --gap-item: 14px;
+  --nav-rail: 208px;
+  --radius-panel: 10px;
+  --radius-control: 6px; /* selects, inputs, small boxes inside a panel */
+
+  /* Networking */
+  --people-list: min(420px, 50dvh); /* the phonebook scrolls inside this height */
+  --person-profile: 360px; /* the person card's profile column, beside the talks */
+  --timeline-max: min(400px, 50dvh); /* more lanes than fit scroll under the month header */
+  --lane-month: 64px; /* width of one month in the timeline */
+  --lane-row: 36px; /* height of one person's lane */
+  --lane-dot: 10px; /* one interaction on a lane, and the kind dot beside a label */
+  --lane-label: 168px; /* width of the sticky name column */
+  --transcript-max: 360px; /* a transcript scrolls past this height */
+
+  /* Career */
+  --career-column: 240px; /* one status column on the board, on the Mac */
+  --role-side: 320px; /* the role's status and notes, beside its timeline on the Mac */
+  --posting-max: min(480px, 60dvh); /* a saved posting scrolls past this height */
+  --draft-max: min(560px, 65dvh); /* a draft or kept letter scrolls past this height */
+  --tap: 44px; /* the smallest a thumb target should be (Apple HIG) */
+  --check: 20px; /* a todo's checkbox */
+  --kind-box: 28px; /* the tap column around a todo's kind dot, a full --tap tall */
+  --tap-chip: 36px; /* a chip in a row of choices: shorter than --tap, with room around it */
+  --tap-min: 0px; /* the least height of a button or text button; a full --tap on the phone */
+  --chip-min: 0px; /* the least height of a pressable chip; --tap-chip on the phone */
+}
+
+/* The phone. Keep in step with PHONE in shell/phone.ts. */
+@media (max-width: 640px) {
+  :root {
+    --page-margin: 16px;
+    --panel-pad: 18px;
+    --type-control: 16px; /* iOS zooms into any field under 16px when tapped */
+    --tap-min: var(--tap);
+    --chip-min: var(--tap-chip);
+  }
+}

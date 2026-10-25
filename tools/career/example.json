@@ -1,0 +1,25 @@
+{
+  "roles": [
+    {
+      "id": "northwind-forward-deployed-engineer",
+      "company": "Northwind Health",
+      "title": "Forward Deployed Engineer",
+      "location": "Remote",
+      "link": "https://jobs.example/northwind/123",
+      "comp": "$150k-$210k base",
+      "status": "applied",
+      "notes": "Job ID 123.",
+      "events": [
+        { "date": "2026-07-01", "kind": "applied", "text": "Applied on their site." }
+      ]
+    },
+    {
+      "id": "lumen-applied-ai-engineer",
+      "company": "Lumen Labs",
+      "title": "Applied AI Engineer",
+      "location": "New York, hybrid",
+      "status": "interested",
+      "referral_person_id": "maya-okafor"
+    }
+  ]
+}

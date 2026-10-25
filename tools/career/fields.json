@@ -1,0 +1,66 @@
+{
+  "EventEdit": [
+    "date",
+    "kind",
+    "prep_link",
+    "text",
+    "version"
+  ],
+  "NewEvent": [
+    "date",
+    "kind",
+    "prep_link",
+    "text"
+  ],
+  "NewRole": [
+    "applied_via",
+    "comp",
+    "company",
+    "link",
+    "location",
+    "notable",
+    "notes",
+    "posting",
+    "referral_person_id",
+    "resume_file",
+    "title"
+  ],
+  "NewTodo": [
+    "due_on",
+    "kind",
+    "role_id",
+    "text"
+  ],
+  "PostingLink": [
+    "link"
+  ],
+  "RoleEdit": [
+    "applied_via",
+    "approved_cover_letter",
+    "approved_resume_draft",
+    "comp",
+    "company",
+    "link",
+    "location",
+    "notable",
+    "notes",
+    "posting",
+    "referral_person_id",
+    "resume_file",
+    "title",
+    "version"
+  ],
+  "StatusChange": [
+    "date",
+    "status",
+    "text",
+    "version"
+  ],
+  "TodoEdit": [
+    "done",
+    "due_on",
+    "kind",
+    "text",
+    "version"
+  ]
+}

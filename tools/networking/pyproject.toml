@@ -1,0 +1,25 @@
+[project]
+name = "career-kit-networking"
+version = "0.1.0"
+description = "The write side of networking: the people you know and every time they talked. The only programs that write networking.db."
+requires-python = ">=3.14,<3.15"
+dependencies = [
+    "fastapi==0.141.1",
+    "uvicorn==0.54.0",
+    "writekit",
+]
+
+[tool.uv]
+package = false
+# Same rule as api/ and web/: ignore releases younger than 3 days.
+exclude-newer = "3 days"
+
+[dependency-groups]
+dev = [
+    "httpx2==2.13.1",
+    "pytest==9.1.1",
+]
+
+[tool.uv.sources]
+# What every writer shares: docs/writers.md.
+writekit = { path = "../writekit", editable = true }
