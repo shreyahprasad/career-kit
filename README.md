@@ -28,8 +28,8 @@ Code session.
 
 ## What you need
 
-New to Terminal? The [setup wizard](docs/setup/index.html) walks through every step below with
-commands to copy. Download the file and open it in your browser.
+New to Terminal? The [setup wizard](https://shreyahprasad.github.io/career-kit/setup/) walks
+through every step below with commands to copy.
 
 - A Mac that can stay on (an old laptop or a Mac mini is fine), with [Homebrew](https://brew.sh).
 - [Claude Code](https://code.claude.com/docs/en/setup), signed in with a Claude Pro, Max, Team or
